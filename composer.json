@@ -18,10 +18,10 @@
 	],
 	"require" : {
 		"yiisoft/yii2" : "*"
-	},	
+	},
 	"autoload" : {
 		"psr-4" : {
-			"raoul2000\\bgswitcher\\" : ""
+			"raoul2000\\widget\\bgswitcher\\" : ""
 		}
 	}
 }

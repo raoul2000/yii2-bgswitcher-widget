@@ -1,11 +1,11 @@
 <?php
-namespace raoul2000\bgswitcher;
+namespace raoul2000\widget\bgswitcher;
 use yii\web\AssetBundle;
 
 /**
  * @author Raoul <raoul.boulard@gmail.com>
  */
-class JBgSwitcherAsset extends AssetBundle
+class BgSwitcherAsset extends AssetBundle
 {
 	public $js = ['jquery.bgswitcher.js'];
 	public $depends = ['yii\web\JqueryAsset'];

@@ -1,5 +1,5 @@
 <?php
-namespace raoul2000\bgswitcher;
+namespace raoul2000\widget\bgswitcher;
 
 use Yii;
 use yii\base\Widget;
@@ -12,7 +12,7 @@ use yii\web\JsExpression;
  * JBgSwitcherWidget is a wrapper for the [jQuery.BgSwitcher](https://github.com/rewish/jquery-bgswitcher).
  *
  * ~~~
- *	echo JBgSwitcherWidget::widget([
+ *	echo BgSwitcher::widget([
  *		'id' => 'jumbotron',
  *		'images' => [
  *			'images/background/image1.jpg',
@@ -26,7 +26,7 @@ use yii\web\JsExpression;
  * @author Raoul <raoul.boulard@gmail.com>
  *
  */
-class JBgSwitcherWidget extends Widget
+class BgSwitcher extends Widget
 {
 	/**
 	 * @var 
@@ -94,7 +94,7 @@ class JBgSwitcherWidget extends Widget
  		$js = "jQuery(\"#{$this->id}\").bgswitcher(".$options.");";
 
  		$view = $this->getView();
-		JBgSwitcherAsset::register($view);
+		BgSwitcherAsset::register($view);
 		$view->registerJs($js);
 	}	
 	/**

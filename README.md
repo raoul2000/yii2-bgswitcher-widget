@@ -25,11 +25,11 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
+Once the extension is installed, and assuming that our images are stored in @webroot/images/background, simply use this code by  :
 
 ```php
 <?php
-	echo JBgSwitcherWidget::widget([
+	BgSwitcher::widget([
 		'id' => 'targetId',
 		'images' => [
 			'images/background/image1.jpg',
@@ -40,7 +40,7 @@ Once the extension is installed, simply use it in your code by  :
 	]);
 ?>
 
-<div id="targetId" style="cover-bg" style="width:100%;">
+<div id="targetId" class="cover-bg" style="width:100%;height:250px;">
 	<p>some text here ... </p>
 </div>
 ```
