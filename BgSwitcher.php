@@ -13,13 +13,15 @@ use yii\web\JsExpression;
  *
  * ~~~
  *	echo BgSwitcher::widget([
- *		'id' => 'jumbotron',
- *		'images' => [
- *			'images/background/image1.jpg',
- *			'images/background/image2.jpg',
- *			'images/background/image3.jpg',
- *			'images/background/image4.jpg'
- *		]
+ *		'selector' => '#jumbotron',
+ *      'pluginOptions' => [
+  *			'images' => [
+ *				'images/background/image1.jpg',
+ *				'images/background/image2.jpg',
+ *				'images/background/image3.jpg',
+ *				'images/background/image4.jpg'
+ *			]
+ *      ]
  *	]);
  * ~~~
  * 
@@ -29,50 +31,23 @@ use yii\web\JsExpression;
 class BgSwitcher extends Widget
 {
 	/**
-	 * @var 
+	 * @var string the JQuery selector to attach the background switcher (e.g. '#bg_container')
 	 */
-	public $id;
+	public $selector;
 	/**
-	 * @var array Background images
-	 */	
-	public $images= [];
-	/**
-	 * @var int Interval of switching in milliseconds
-	 */	
-	public $interval = 5000;
-	/**
-	 * @var boolean Start the switch on after initialization
-	 */	
-	public $start = true;
-	/**
-	 * @var boolean Loop the switch
-	 */	
-	public $loop = true;
-	/**
-	 * @var boolean Shuffle the image order
-	 */	
-	public $shuffle = false;
-	/**
-	 * @var string Effect type
-	 */	
-	public $effect = 'fade';
-	/**
-	 * @var int  Effect duration
+	 * @var array jQuery.BgSwitcher options see https://github.com/rewish/jquery-bgswitcher
 	 */
-	public $duration = 1000;
-	/**
-	 * @var string Effect easing
-	 */
-	public $easing = 'swing';
+	public $pluginOptions = [];	
+
 	/**
 	 * Initializes the widget.
-	 * @throws InvalidConfigException if the "id" property is not set.
+	 * @throws InvalidConfigException if the "selector" property is not set.
 	 */	
 	public function init()
 	{
 		parent::init();
-		if (empty($this->id)) {
-			throw new InvalidConfigException('The "id" property must be set.');
+		if (empty($this->selector)) {
+			throw new InvalidConfigException('The "selector" property must be set.');
 		}		
 	}
 	/**
@@ -84,55 +59,16 @@ class BgSwitcher extends Widget
 		$this->registerClientScript();
 	}
 	/**
-	 * Registers the needed JavaScript.
+	 * Registers the needed JavaScript and inject the JS initialization code
 	 */
 	public function registerClientScript()
 	{
-		$options = $this->getClientOptions();
- 		$options = empty($options) ? '' : Json::encode($options);
+ 		$options = empty($this->pluginOptions) ? '' : Json::encode($this->pluginOptions);
  		
- 		$js = "jQuery(\"#{$this->id}\").bgswitcher(".$options.");";
+ 		$js = "jQuery(\"{$this->selector}\").bgswitcher(".$options.");";
 
  		$view = $this->getView();
 		BgSwitcherAsset::register($view);
 		$view->registerJs($js);
-	}	
-	/**
-	 * @return array the options for the text field
-	 */
-	protected function getClientOptions()
-	{
-		$options = [];
-		if ($this->images !== null) {
-			$options['images'] = $this->images;
-		}
-	
-		if ($this->interval !== null) {
-			$options['interval'] = $this->interval;
-		}		
-
-		if ($this->start !== null) {
-			$options['start'] = $this->start;
-		}
-		
-		if ($this->loop !== null) {
-			$options['loop'] = $this->loop;
-		}	
-		if ($this->shuffle !== null) {
-			$options['shuffle'] = $this->shuffle;
-		}			
-		if ($this->effect !== null) {
-			$options['effect'] = $this->effect;
-		}		
-
-		if ($this->duration !== null) {
-			$options['duration'] = $this->duration;
-		}
-		
-		if ($this->easing !== null) {
-			$options['easing'] = $this->easing;
-		}
-
-		return $options;
-	}	
+	}		
 }

@@ -25,17 +25,21 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, and assuming that our images are stored in @webroot/images/background, simply use this code by  :
+Once the extension is installed, and assuming that our 3 images are stored in `@webroot/images/background`, simply use this code by  :
 
 ```php
 <?php
+	use raoul2000\widget\bgswitcher\BgSwitcher;
+	
 	BgSwitcher::widget([
-		'id' => 'targetId',
-		'images' => [
-			'images/background/image1.jpg',
-			'images/background/image2.jpg',
-			'images/background/image3.jpg',
-			'images/background/image4.jpg'
+		'selector' => '#targetId',
+		'pluginOptions' => [
+			'images' => [
+				'images/background/image1.jpg',
+				'images/background/image2.jpg',
+				'images/background/image3.jpg',
+				'http://placehold.it/350x150'   // this image is remote
+			]
 		]
 	]);
 ?>
