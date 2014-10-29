@@ -67,6 +67,8 @@ Below is an example of a CSS style to apply to the target container :
 For complete documentation please refer to the [official BgSwitcher page](http://rewish.github.io/jquery-bgswitcher/). You may also have a look
 to the [Github](https://github.com/rewish/jquery-bgswitcher) project page.
 
+**If this plugin did not convinced you, have a look to the [Backstretch Plugin](https://github.com/raoul2000/yii2-backstretch-widget)**
+
 License
 -------
 
